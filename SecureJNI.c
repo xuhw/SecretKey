@@ -40,34 +40,27 @@ jstring strTojstring(JNIEnv* env, const char* pat)
 	return (jstring)(*env)->NewObject(env, strClass, ctorID, bytes, encoding);
 }
 
-jstring Java_com_jingdong_app_reader_util_SecretKeyUtil_encrypt( JNIEnv*  env, jobject this, jstring ebookId, jstring userPin, jstring keyStr)
+jstring Java_com_example_demo_SecretKeyUtil_encrypt( JNIEnv*  env, jobject this, jstring obj1, jstring obj2, jstring obj3)
 {
 
-	char *ebookid = jstringToChar(env, ebookId);
-	char *userpin = jstringToChar(env, userPin);
-	char *key = jstringToChar(env, keyStr);
+	char *str1 = jstringToChar(env, obj1);
+	char *str2 = jstringToChar(env, obj2);
+	char *str3 = jstringToChar(env, obj3);
 	
-	// LOGI("TTTTTT=====ebookid= %s===userpin=%s====key=%s", ebookid, userpin, key); 
-
-	char *result = lebook_book_string_encrypt(ebookid, userpin, key);
-
-	// LOGI("TTTTTT=====result=%s====", result); 
+	char *result = lebook_book_string_encrypt(str1, str2, str3);
 
 	return (*env)->NewStringUTF(env, result);
 }
 
-jstring Java_com_jingdong_app_reader_util_SecretKeyUtil_decrypt( JNIEnv*  env, jobject this, jstring ebookId, jstring userPin, jstring keyStr)
+jstring Java_com_example_demo_SecretKeyUtil_decrypt( JNIEnv*  env, jobject this, jstring obj1, jstring obj2, jstring obj3)
 {
-
-	char *ebookid = jstringToChar(env, ebookId);
-	char *userpin = jstringToChar(env, userPin);
-	char *key = jstringToChar(env, keyStr);
+	char *str1 = jstringToChar(env, obj1);
+	char *str2 = jstringToChar(env, obj2);
+	char *str3 = jstringToChar(env, obj3);
 	
 	// LOGI("TTTTTT===decrypt==ebookid= %s===userpin=%s====key=%s", ebookid, userpin, key); 
 
-	char *result = lebook_book_string_decrypt(ebookid, userpin, key);
-
-	// LOGI("TTTTTT===decrypt==result=%s====", result); 
-
+	char *result =  lebook_book_string_decrypt(str1, str2, str3);
+	
 	return (*env)->NewStringUTF(env, result);
 }
